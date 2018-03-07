@@ -83,7 +83,7 @@ scala> df1Filtered.select("Année universitaire","Categorie de personnels", "Sec
 |          2016-2017|   Enseignants du 2n...|Mathématiques|       9|Université de Cer...|
 |          2016-2017|   Maître de confére...|Mathématiques|       7|Université de Cer...|
 |          2016-2017|   Enseignants du 2n...|Mathématiques|       4|Université de Cor...|
-|          2010-2011|   Maître de confére...|Mathématiques|       2|Université d'Évry...|
+|          2010-2011|   Maître de confére...|Mathématiques|       2|Université d Évry...|
 |          2010-2011|   Professeur et ass...|Mathématiques|       3|Université Nice -...|
 |          2014-2015|   Professeur et ass...|Mathématiques|       6|Université Paris-Sud|
 |          2016-2017|   Enseignants du 2n...|Mathématiques|       1|Université des An...|
