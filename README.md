@@ -4,6 +4,7 @@ TP spark
 ```scala
 1- connecte to service spark 2:
 $ sudo su spark
+$export SPARK_MAJOR_VERSION=2
 
 2- lancer spark shell:
 $ spark-shell
