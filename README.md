@@ -1,6 +1,7 @@
 # SPARK-Scala
 TP spark
 
+```scala
 1- connecte to service spark 2:
 $ sudo su spark
 
@@ -144,3 +145,4 @@ scala> df1.agg(sum("effectif"),min("effectif"),max("effectif"), avg("effectif")
 9- Jointure entre deux dataFrames:
 val joinedDF = df1.join(df2, df1("Établissement") === df2("Établissement"), "inner").show()
 
+```
