@@ -1,24 +1,34 @@
 # SPARK-Scala
 TP spark
 
-```scala
+
 1- connecte to service spark 2:
+```scala
 $ sudo su spark
 $export SPARK_MAJOR_VERSION=2
+```
 
 2- lancer spark shell:
+```scala
 $ spark-shell
-
+```
 3-create SQLContext.
+```scala
 scala> val sqlcontext = new org.apache.spark.sql.SQLContext(sc)
+```
 
 4-Read the .csv file Document from hdfs to spark:
+```scala
  val df = spark.read.format("csv").option("header", "true").option("delimiter",";").option("inferSchema","true").load("/user/hadoop/Boubaker/resultats_electoraux.csv")
+ ```
  
 5-Show the Data: If you want to see the data in the DataFrame, then use the following command.
+```scala
 scala> df.show()
+```
 
 6-Use printSchema Method:If you want to see the Structure (Schema) of the DataFrame, then use the following command.
+```scala
 scala> df1.printSchema()
 root
  |-- Rentrée: integer (nullable = true)
@@ -70,12 +80,16 @@ root
 |          2016-2017|   Maître de confére...|       4|Université de Cer...|
 +-------------------+-----------------------+--------+--------------------+
 only showing top 20 rows
+```
 
 7- Transformations on data frame:
 
 ------>Filter:
+```scala
 scala> val df1Filtered = df1.filter(df1("Sections CNU") === "Mathématiques")
+```
 ------>Select:
+```scala
 scala> df1Filtered.select("Année universitaire","Categorie de personnels", "Sections CNU","effectif","Établissement").show()
 +-------------------+-----------------------+-------------+--------+--------------------+
 |Année universitaire|Categorie de personnels| Sections CNU|effectif|       Établissement|
@@ -102,12 +116,16 @@ scala> df1Filtered.select("Année universitaire","Categorie de personnels", "Sec
 |          2016-2017|   Maître de confére...|Mathématiques|       3|Université de la ...|
 +-------------------+-----------------------+-------------+--------+--------------------+
 only showing top 20 rows
+```
 
 ---->Filter/ Fonction: Count.
+```scala
 scala> df1.filter(df1("Rentrée") === "2016").count()
 res17: Long = 25560
+```
 
 -----> groupBy
+```scala
 scala> df1.groupBy("Categorie de personnels").count().show()
 +-----------------------+-----+
 |Categorie de personnels|count|
@@ -116,7 +134,9 @@ scala> df1.groupBy("Categorie de personnels").count().show()
 |   Enseignants du 2n...|22659|
 |   Maître de confére...|84341|
 +-----------------------+-----+
+```
 ----> SORT:
+```scala
 scala> df1.select("Categorie de personnels", "Categorie de personnels").sort("Categorie de personnels").show(10)
 +-----------------------+-----------------------+
 |Categorie de personnels|Categorie de personnels|
@@ -133,8 +153,10 @@ scala> df1.select("Categorie de personnels", "Categorie de personnels").sort("Ca
 |   Enseignants du 2n...|   Enseignants du 2n...|
 +-----------------------+-----------------------+
 only showing top 10 rows
+```
 
 ---> aggrégation:
+```scala
 scala> df1.agg(sum("effectif"),min("effectif"),max("effectif"), avg("effectif")
      | ).show()
 +-------------+-------------+-------------+----------------+
@@ -142,8 +164,11 @@ scala> df1.agg(sum("effectif"),min("effectif"),max("effectif"), avg("effectif")
 +-------------+-------------+-------------+----------------+
 |       488975|            1|           78|2.89089705160722|
 +-------------+-------------+-------------+----------------+
+```
 
 9- Jointure entre deux dataFrames:
+```scala
 val joinedDF = df1.join(df2, df1("Établissement") === df2("Établissement"), "inner").show()
+```
 
 ```
